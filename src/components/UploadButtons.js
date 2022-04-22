@@ -48,6 +48,12 @@ export default function UploadButtons() {
     setSelectedFile(e.target.files[0]);
   };
 
+  const detectInfo = () => {
+    fetch('http://localhost:2707/info-image?dir=123123').then(res => res.json()).then((res) => {
+      console.log('\n--------\n', res, '\n--------\n');
+    })
+  }
+
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
@@ -72,7 +78,7 @@ export default function UploadButtons() {
                     TÊN QUẢ
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant="outlined" color="primary">
+                    <Button variant="outlined" color="primary" onClick={detectInfo}>
                       Phân tích
                     </Button>
                   </Grid>
