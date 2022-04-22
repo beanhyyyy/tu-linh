@@ -1,16 +1,17 @@
-import { styled } from "@material-ui/styles";
+import React from "react";
+
+import styled from "@material-ui/styles/styled";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import React, { useState } from "react";
+import Card from "@material-ui/core/Card";
+
 import Header from "./Header";
 import TabsIndicatorCenter from "./TabsIndicatorCenter";
 import demoImage from "../image/demo.png";
 import avatarImage from "../image/avatar.png";
 import backgroundImage from "../image/background.png";
-
-import { Card } from "@material-ui/core";
 import UploadButtons from "./UploadButtons";
 
 const PageBackgroundWrapper = styled("div")(
@@ -27,9 +28,6 @@ const PageBackgroundWrapper = styled("div")(
 
 /* nền có nhiều vòng tròn */
 export default function PageBackground() {
-  const [selectedFile, setSelectedFile] = useState();
-  const [preview, setPreview] = useState();
-
   const tabs = [
     {
       label: "Giới thiệu",
@@ -105,26 +103,16 @@ export default function PageBackground() {
             variant="outlined"
             style={{
               border: "3px dashed #F9D9E6",
-              height: "45vh",
+              height: "70vh",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "32px",
+              overflowY: "auto",
             }}
           >
-            <UploadButtons
-              setPreview={setPreview}
-              setSelectedFile={setSelectedFile}
-              selectedFile={selectedFile}
-            />
+            <UploadButtons />
           </Card>
-          {selectedFile && (
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <img src={preview} width="100%" height="auto" alt="" />
-              </Grid>
-            </Grid>
-          )}
         </Container>
       ),
     },
