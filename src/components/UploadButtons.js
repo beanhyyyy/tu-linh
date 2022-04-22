@@ -54,6 +54,9 @@ export default function UploadButtons() {
         {selectedFile && (
           <Grid container spacing={4} justify="center">
             <Grid item xs={12} sm={6}>
+              <img src={preview} width="100%" height="auto" alt="" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <Typography
                 variant="h6"
                 style={{
@@ -75,9 +78,6 @@ export default function UploadButtons() {
                   </Grid>
                 </Grid>
               </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <img src={preview} width="100%" height="auto" alt="" />
             </Grid>
           </Grid>
         )}
