@@ -22,6 +22,7 @@ export default function UploadButtons() {
   const classes = useStyles();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const [result, setResult] = useState();
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -44,21 +45,28 @@ export default function UploadButtons() {
       return;
     }
 
+    console.log('e.target.files[0]', e.target.files[0].FullPath)
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
   };
 
   const detectInfo = () => {
-    fetch('http://localhost:2707/info-image?dir=123123').then(res => res.json()).then((res) => {
-      console.log('\n--------\n', res, '\n--------\n');
-    })
-  }
+    fetch("http://localhost:2707/info-image?dir=123123")
+      .then((res) => res.json())
+      .then((res) => {
+        setResult(res.data[0]);
+      });
+  };
 
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
         {selectedFile && (
           <Grid container spacing={4} justify="center">
+            <Grid item xs={12} sm={6}>
+              {console.log('preview', preview)}
+              <img src={preview} width="100%" height="auto" alt="" />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <Typography
                 variant="h6"
@@ -72,18 +80,19 @@ export default function UploadButtons() {
               >
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
-                    TÊN QUẢ
+                    {result}
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant="outlined" color="primary" onClick={detectInfo}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={detectInfo}
+                    >
                       Phân tích
                     </Button>
                   </Grid>
                 </Grid>
               </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <img src={preview} width="100%" height="auto" alt="" />
             </Grid>
           </Grid>
         )}
