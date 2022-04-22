@@ -121,6 +121,9 @@ export default function PageBackground() {
           {selectedFile && (
             <Grid container spacing={2}>
               <Grid item xs={12}>
+                <Typography variant="h6">TÊN QUẢ</Typography>
+              </Grid>
+              <Grid item xs={12}>
                 <img src={preview} width="100%" height="auto" alt="" />
               </Grid>
             </Grid>
